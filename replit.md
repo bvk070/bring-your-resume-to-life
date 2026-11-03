@@ -1,6 +1,6 @@
-# [Project name]
+# Bhavik Sadiwala — Staff Android Engineer
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A recruiter-ready portfolio presenting Bhavik Sadiwala's verified Android engineering, AI mobile work, technical leadership, and public contact links.
 
 ## Run & Operate
 
@@ -22,15 +22,20 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/bhavik-resume/` — public portfolio website and privacy-redacted resume download
+- `artifacts/api-server/src/routes/ambassador.ts` — evidence-grounded recruiter chat endpoint
+- `lib/api-spec/openapi.yaml` — source of truth for the ambassador API contract
+- `artifacts/mockup-sandbox/src/components/mockups/bhavik-resume/` — portfolio design directions on the Design canvas
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The ambassador answers one question at a time from curated, verified portfolio facts; chats are not persisted.
+- Model calls stay on the API server; the browser never receives AI credentials.
+- The downloadable resume is a public copy with private phone and postal details redacted; the attached original must not be published.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Recruiters can scan role fit, inspect project evidence and experience, download a public resume, follow verified demo and writing links, contact Bhavik, or ask an evidence-only virtual ambassador.
 
 ## User preferences
 

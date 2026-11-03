@@ -10,6 +10,8 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: ambassador
+    description: Evidence-grounded recruiter questions
 paths:
   /healthz:
     get:
@@ -24,6 +26,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /ambassador/chat:
+    post:
+      operationId: askAmbassador
+      tags: [ambassador]
+      summary: Ask the virtual ambassador a recruiter question
+      description: Answers only from the verified public portfolio facts. Questions and answers are not stored.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AmbassadorQuestion"
+      responses:
+        "200":
+          description: Evidence-grounded answer
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AmbassadorAnswer"
+        "400":
+          description: Invalid question
+        "429":
+          description: Too many requests
+        "503":
+          description: Ambassador temporarily unavailable
 components:
   schemas:
     HealthStatus:
@@ -33,4 +60,23 @@ components:
           type: string
       required:
         - status
+    AmbassadorQuestion:
+      type: object
+      properties:
+        question:
+          type: string
+          minLength: 1
+          maxLength: 800
+      required:
+        - question
+    AmbassadorAnswer:
+      type: object
+      properties:
+        answer:
+          type: string
+        sectionId:
+          type: ["string", "null"]
+      required:
+        - answer
+        - sectionId
 

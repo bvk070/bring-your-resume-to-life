@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Bhavik Sadiwala — Staff Android Engineer"
+description = "A recruiter-ready portfolio for Bhavik Sadiwala, focused on staff-level Android engineering, production AI features, technical leadership, and verified project evidence."
+version = "1.0.0"
+id = "artifacts/bhavik-resume"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19442
+
+[services.development]
+run = "pnpm --filter @workspace/bhavik-resume run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/bhavik-resume", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/bhavik-resume/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19442"
+BASE_PATH = "/"
